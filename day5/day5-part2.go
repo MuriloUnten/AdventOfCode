@@ -68,8 +68,12 @@ func part1(path string) string {
         numMovements, _ := strconv.Atoi(lineTokens[1])
         origin, _ := strconv.Atoi(lineTokens[3])
         destination, _ := strconv.Atoi(lineTokens[5])
+        var tempStack stack = make(stack, numMovements)
         for i := 0; i < numMovements; i++ {
-            correctedStacks[destination - 1].Push(correctedStacks[origin - 1].Pop())
+            tempStack.Push(correctedStacks[origin - 1].Pop())
+        }
+        for i := 0; i < numMovements; i++ {
+            correctedStacks[destination - 1].Push(tempStack.Pop())
         }
     }
 
